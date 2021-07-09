@@ -3,8 +3,10 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div>
-      <h1>NavBar</h1>
+    <div className="border-b-2 mb-2">
+      <Link href="/">
+        <a className="btn">Home</a>
+      </Link>
     </div>
   );
 };
