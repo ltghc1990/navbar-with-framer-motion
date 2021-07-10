@@ -6,7 +6,6 @@ const HomePage = ({ recipes }) => {
   // console.log(recipes);
   return (
     <div>
-      <h1>Home Page</h1>
       <RecipeList recipes={recipes} />
     </div>
   );

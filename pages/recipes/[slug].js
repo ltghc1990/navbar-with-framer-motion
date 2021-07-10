@@ -4,6 +4,8 @@ import { getContentfulEntries } from "../../lib/contentful-utils";
 // used to render the richtext from contentful
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
+const style = { backgroundColor: "#F7F5F0" };
+
 const RecipeDetailPage = ({ recipe }) => {
   if (!recipe) {
     return <div>loading...</div>;
@@ -12,8 +14,8 @@ const RecipeDetailPage = ({ recipe }) => {
   const { featuredImage, title, cookingTime, ingredients, method } =
     recipe.fields;
   return (
-    <div>
-      <div>
+    <div style={style} className="p-10 lg:p-14 text-secondary-200 font-uchen">
+      <div className="container mx-auto bg-white p-10  lg:p-20">
         <Image
           src={`https:${featuredImage.fields.file.url}`}
           alt={featuredImage.fields.title}
@@ -21,24 +23,25 @@ const RecipeDetailPage = ({ recipe }) => {
           width="500px"
           height="300px"
         />
-      </div>
-      <h2>{title}</h2>
-      <div>
-        <h4>ingredients</h4>
-        {ingredients.map((item) => {
-          return (
-            <button key={item} className="btn">
-              {item}
-            </button>
-          );
-        })}
-      </div>
 
-      <div>takes about {cookingTime} mins to cook.</div>
+        <h2 className="text-lg font-bold text-primary">{title}</h2>
+        <div>
+          <h4 className="font-semibold">Ingredients:</h4>
+          {ingredients.map((item) => {
+            return (
+              <button key={item} className="btn">
+                {item}
+              </button>
+            );
+          })}
+        </div>
 
-      {/* function that takes our rich text mothod obj and renders it correctly */}
-      <div>
-        <div>{documentToReactComponents(method)}</div>
+        <div className="my-4">takes about {cookingTime} mins to cook.</div>
+
+        {/* function that takes our rich text mothod obj and renders it correctly */}
+        <div className="method">
+          <div>{documentToReactComponents(method)}</div>
+        </div>
       </div>
     </div>
   );
