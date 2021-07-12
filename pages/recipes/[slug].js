@@ -1,20 +1,21 @@
 import React from "react";
 import Image from "next/image";
 import { getContentfulEntries } from "../../lib/contentful-utils";
+import { motion } from "framer-motion";
 // used to render the richtext from contentful
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-
-const style = { backgroundColor: "#F7F5F0" };
 
 const RecipeDetailPage = ({ recipe }) => {
   if (!recipe) {
     return <div>loading...</div>;
   }
-  console.log(recipe);
   const { featuredImage, title, cookingTime, ingredients, method } =
     recipe.fields;
   return (
-    <div style={style} className="p-10 lg:p-14 text-secondary-200 font-uchen">
+    <motion.div
+      exit={{ opacity: 0 }}
+      className="bg-beige p-10 lg:p-14 text-secondary-200 font-uchen"
+    >
       <div className="container mx-auto bg-white p-10  lg:p-20">
         <Image
           src={`https:${featuredImage.fields.file.url}`}
@@ -43,7 +44,7 @@ const RecipeDetailPage = ({ recipe }) => {
           <div>{documentToReactComponents(method)}</div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

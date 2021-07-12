@@ -5,7 +5,7 @@ import RecipeList from "../components/RecipeList";
 const HomePage = ({ recipes }) => {
   // console.log(recipes);
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <RecipeList recipes={recipes} />
     </div>
   );
